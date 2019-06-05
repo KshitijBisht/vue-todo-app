@@ -1,4 +1,5 @@
-# my-todo
+# A simple todo App made using Vue js. 
+//Mind the Css
 
 ## Project setup
 ```
