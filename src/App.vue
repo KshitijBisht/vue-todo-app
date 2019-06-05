@@ -14,9 +14,9 @@
         <ul class="todo-list">
           <li class="todo" v-for="(todo, key) in todos" :key="key">
             <div class="view">
-              <input type="checkbox">
-              <label>{{ todo }}</label>
-              <button class="destroy" @click="removeTodo(todo)">X</button>
+              <input type="checkbox" @click="check(todo)">
+              <label>{{ todo.text }}</label>
+              <button v-show="todo.done" class="destroy" @click="removeTodo(todos.indexOf(todo))">X</button>
               <br/>
             </div>
           </li>
@@ -30,20 +30,33 @@ export default {
   name: "App",
   data() {
     return {
-      todos: [],
+      todos: [
+        
+      ],
       newTodo: ""
     };
   },
   methods: {
-    addTodo() {
-      if (this.newTodo !== "") {
-        this.todos.push(this.newTodo);
-        this.newTodo = "";
-      }
+    addTodo(event) {
+      const text = event.target.value;
+      this.todos.push({text:text,done:false});
+      event.target.value = ""
+
+     
     },
-    removeTodo(todo) {
-      this.todos.splice(this.todos.indexOf(todo), 1);
+    removeTodo(i) {
+      return this.todos.splice(i,1);
+    },
+
+    check(todo){
+      todo.done = !todo.done
+      
     }
   }
 };
 </script>
+
+
+
+<style lang="css" src="./style.css">
+</style>

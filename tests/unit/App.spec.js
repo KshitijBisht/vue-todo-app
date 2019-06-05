@@ -34,7 +34,8 @@ describe('App', () => {
         describe('On press Enter Key', () => {
             it('should add a new todo to "todos"', () => {
                 inputField.trigger('keyup.enter');
-                expect(wrapper.vm.todos).toEqual(['New Todo']);
+                expect(wrapper.vm.todos).toEqual([{"done": false, "text": "New Todo"}]
+                );
             });
         });
         describe('On pressing Enter + removes todo', () => {
@@ -42,7 +43,6 @@ describe('App', () => {
                 inputField.trigger("keyup.enter");
                 const removeIcon = wrapper.find(".destroy");
                 removeIcon.trigger("click");
-
                 expect(wrapper.vm.todos).toEqual([]);
             });
         });
